@@ -1,2 +1,2 @@
 # JavaPractice
-Whatever and whenever I would practice something, I would upload it in this repository. All suggestions for enhancements are most welcome.
+Whatever I would be practising about Java Collections, I would upload those files in this repository. All suggestions for enhancement are most welcome.
