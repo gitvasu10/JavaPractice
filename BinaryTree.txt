@@ -1,0 +1,154 @@
+//Java code including Pre, Post and In-order tree traversals...  
+
+package self_practice;
+
+import java.util.Scanner;
+
+// Node class to create new nodes
+class Node {
+	private int data;
+	Node left;
+	Node right;
+
+	public Node(int data) {
+		this.setData(data);
+		this.left = null;
+		this.right = null;
+	}
+
+	public int getData() {
+		return data;
+	}
+
+	public void setData(int data) {
+		this.data = data;
+	}
+
+}
+
+public class BinaryTree {
+	private Node root = null;
+
+	public BinaryTree() {
+		this.root = null;
+	}
+
+	public static void main(String[] args) {
+		try (Scanner sc = new Scanner(System.in)) {
+			BinaryTree tree = new BinaryTree();
+
+			System.out.println("1.Enter a value into the tree\n" + "2. Preorder of the tree\n"
+					+ "3. Postorder of the tree\n" + "4. Inorder of the tree\n" + "5. Exit");
+
+			boolean exit = false;
+			while (!exit) {
+				System.out.println("Please enter your choice...");
+				int choice = sc.nextInt();
+				switch (choice) {
+				case 1:
+					System.out.println("Enter the data value...");
+					tree.insert(sc.nextInt());
+					System.out.println("Value inserted successfully!");
+					break;
+
+				case 2:
+					System.out.println("The Pre-Order of the tree is: ");
+					tree.preOrder(tree.root);
+					break;
+				case 3:
+					System.out.println("The Post-Order of the tree is: ");
+					tree.postOrder(tree.root);
+					break;
+				case 4:
+					System.out.println("The In-Order of the tree is: ");
+					tree.inOrder(tree.root);
+					break;
+				case 5:
+					System.out.println("Code terminated successfully!");
+					exit = true;
+					break;
+
+				}
+			}
+		}
+	}
+
+	public void insert(int value) {
+		Node nodeToInsert = new Node(value);
+		if (root == null) {
+			root = nodeToInsert;
+		} else {
+
+			insert(root, nodeToInsert);
+		}
+	}
+
+	public void insert(Node root, Node nodeToInsert) {
+		if (root.getData() > nodeToInsert.getData()) {
+			if (root.left == null) {
+				root.left = nodeToInsert;
+				
+			} else {
+				insert(root.left, nodeToInsert);
+				
+			}
+		} else if (root.getData() < nodeToInsert.getData()) {
+			if (root.right == null) {
+			
+				root.right = nodeToInsert;
+			
+			} else {
+				insert(root.right, nodeToInsert);
+			
+			}
+
+		} else {
+			System.out.println("Invalid entry!!");
+		}
+
+	}
+
+	public void preOrder(Node root) {
+		if (root == null) {
+			System.out.println("The tree is empty!");
+			return;
+		} else {
+			System.out.println(root.getData());
+			if (root.left != null) {	//If the left of root is not null then traverse the tree further towards left. Otherwise, it would print "The tree is EMPTY!" for every null link.
+				preOrder(root.left);
+			}
+			if (root.right != null) {       //If the right of root is not null then traverse the tree further towards right. Otherwise, it would print "The tree is EMPTY!" for every null link.
+				preOrder(root.right);
+			}
+		}
+	}
+
+	public void postOrder(Node root) {
+		if (root == null) {
+			System.out.println("The tree is EMPTY!");
+		} else {
+			if (root.left != null) {      //If the left of root is not null then traverse the tree further towards left. Otherwise, it would print "The tree is EMPTY!" for every null link.
+				postOrder(root.left);
+			}
+			if (root.right != null) {     //If the right of root is not null then traverse the tree further towards right. Otherwise, it would print "The tree is EMPTY!" for every null link.
+				postOrder(root.right);
+			}
+			System.out.println(root.getData());
+		}
+	}
+
+	public void inOrder(Node root) {
+		if (root == null) {
+			System.out.println("The tree is EMPTY!");
+		} else {
+			if (root.left != null) {    //If the left of root is not null then traverse the tree further towards left. Otherwise, it would print "The tree is EMPTY!" for every null link.
+				inOrder(root.left);
+			}
+			System.out.println(root.getData());
+			if (root.right != null) {   //If the right of root is not null then traverse the tree further towards right. Otherwise, it would print "The tree is EMPTY!" for every null link.
+				inOrder(root.right);
+			}
+		}
+	}
+
+}
