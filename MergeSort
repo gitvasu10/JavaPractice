@@ -1,0 +1,106 @@
+package self_practice;
+
+import java.util.Random;
+
+public class MergeSort {
+
+	private static void mergeSort(int[] array) {
+		int length = array.length;
+		if (length < 2) {
+			return;
+		}
+
+		// Dividing the array into two parts
+
+		int midElement = length / 2;
+		int[] leftHalf = new int[midElement];
+		int[] rightHalf = new int[length - midElement]; // This is so since not everytime, our array will have even
+														// number of elements
+
+		// Populating both the halves array using the original array
+
+		for (int i = 0; i < midElement; i++) {
+			leftHalf[i] = array[i];
+		}
+		// righthalf wale mein indexing toh 0 se hi hogi par values purane wale array ke
+		// index ke hisaab se hi hogi na..
+		// That's why LHS mein index nikalenge array ka
+		// RHS mein purane array ke original index se values
+		for (int i = midElement; i < length; i++) {
+			rightHalf[i - midElement] = array[i];
+		}
+
+		mergeSort(leftHalf); //Sorted left sub-array
+		mergeSort(rightHalf); //Sorted right sub-array
+		
+		//Here, we'll have to merge both the sub-arrays to form a final original array with sorted values...
+		merge(array,leftHalf,rightHalf);
+	
+	}
+	
+	
+	private static void merge(int[] array, int[] leftHalf, int[] rightHalf) {
+		int leftLength = leftHalf.length;
+		int rightLength = rightHalf.length;
+		
+		//Now we require 3 iterators while sorting and merging
+		
+		//1. For traversing through the left sub-array
+		//2. For traversing through the right sub-array
+		//3. For traversing thorugh the completely merged array
+		
+		//Kyunki jab dono array single-single elements mein toot jayenge to unko mein compare krke ek-ek karke original array mein daalenge taaki in the end, we get a sorted array!
+		
+		int i = 0,j = 0,k = 0; //i->leftHalf, j->rightHalf, k->Merged arra
+		
+		while(i < leftLength && j < rightLength) {
+			if(leftHalf[i] < rightHalf[j]) {
+				array[k] = leftHalf[i];
+				i++; //first spot filled, looking for the next spot.
+			}
+			else {
+				array[k] = rightHalf[j];
+				j++;
+			}
+			k++;//Incrementing the index of the merged array
+		}
+		//Adding the remaining elements into the array in case if some of the elements remain for adding into the merged array
+		//ExAMPLE. fOR 9 elements array, we've 5,4
+		//These 8 elements will be compared and added to the merge sort. But remaining 1 element will also be added.
+		
+		
+		//Adding remaining element from the left sub-array into the merged array
+		while(i < leftLength) {
+			array[k] = leftHalf[i];
+			i++;
+			k++;
+		}
+		while(j < rightLength) {
+			array[k] = rightHalf[j];
+			j++;
+			k++;
+		}
+		
+		
+	}
+
+	public static void main(String[] args) {
+		Random random = new Random();
+		int[] array = new int[100000];
+
+		for (int i = 0; i < array.length; i++) {
+			array[i] = random.nextInt(1000000);
+		}
+		System.out.println("The pre-sorted array is: ");
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}
+
+		mergeSort(array);
+
+		System.out.println("The post-sorted array is:");
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}
+	}
+}
