@@ -1,0 +1,100 @@
+package self_practice;
+
+import java.util.Scanner;
+
+class Q {
+	static int[] array;
+	static int size;
+	static int front;
+	static int rear;
+
+	public Q(int size) {
+		this.size = size;
+		array = new int[this.size];
+		front = -1;
+		rear = -1;
+	}
+
+	public void enqueue(int data) {
+		if (isFull()) {
+			System.out.println("The queue is full!");
+		} else {
+			if(front == -1) {
+				front++;
+			}
+			rear = (rear + 1) % size;
+			array[rear] = data;
+		}
+	}
+
+	public void dequeue() {
+		int temp = 0;
+		if (isEmpty()) {
+			System.out.println("The queue is empty!");
+		}
+//		} else if(front == rear)
+//			// If queue contains a single element
+//		{
+//				temp = array[front];
+//				front--;
+//				System.out.println("The deleted element is: " + temp);
+//				System.out.println("Now the queue is empty!");
+//			}
+		else {
+			temp = array[front];
+			front = (front + 1) % size;
+		}
+		System.out.println("The deleted element is: " + temp);
+	}
+
+	public static boolean isFull() {
+		if (front == rear && !isEmpty()) {
+			return true;
+		}
+		if (front == ((rear + 1) % size)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static boolean isEmpty() {
+		if (front == rear) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void display() {
+		 System.out.println("Front --> " +array[front]);
+		for (int i = (front + 1) % size; i != rear; i = (i + 1) % size) {
+			System.out.print(array[i] + " ");
+
+		}
+		 System.out.println("Rear --> " +array[rear]);
+	}
+}
+
+public class QueuePractice {
+	public static void main(String[] args) {
+
+		System.out.println("enter size of the array");
+		try (Scanner sc = new Scanner(System.in)) {
+			Q q = new Q(sc.nextInt());
+			q.enqueue(33);
+			q.enqueue(34);
+			q.enqueue(56);
+			q.enqueue(36);
+			q.enqueue(54);
+			q.enqueue(34);
+			q.enqueue(24);
+			q.enqueue(14);
+			q.display();
+			System.out.println("\n");
+			q.dequeue();
+
+			q.display();
+		}
+	}
+}
