@@ -1,0 +1,31 @@
+// Approach  explanation---> This techinique iterates till the value of second number becomes zero.
+
+//XOR operator helps to find the unit's digit in the addition of two numbers. For example, addition of 5 and 7 results in 12, hence on finding a XOR b, it results in '2'(unit's digit).
+//Prior to the XOR, we calculate the carry digit separately using the AND operator
+//After all the previous steps, we apply the left shift operator on the second number and return the first number. These all steps are repeated till the moment the second number becomes 0.
+//Once this ensues, the first number already stores the actual answer!!!
+
+
+public class Addition {
+    public static int add(int a, int b) {
+        // Iterate till there is no carry
+        while (b != 0) {
+            // Calculate the carry
+            int carry = a & b;
+
+            // XOR a and b to get the sum without considering the carry
+            a = a ^ b;
+
+            // Shift the carry to the left by one position
+            b = carry << 1;
+        }
+        return a;
+    }
+
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 7;
+        int sum = add(a, b);
+        System.out.println("Sum of " + a + " and " + b + " is: " + sum); // Output: Sum of 5 and 7 is: 12
+    }
+}
