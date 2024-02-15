@@ -1,0 +1,31 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.lang.*;
+class BinExp {
+    
+    public static double power(int a, int b){
+        double result = 1;
+        double powerA = Math.pow(a,2);
+        if (b == 0){
+            return result;
+        }
+        else if(b % 2 == 0){    //even-power
+           
+            result = Math.pow(powerA,b/2);
+            return result;
+        }
+        else{                   //odd-power
+            result = a * Math.pow(powerA,(b-1)/2);
+        return result; 
+        }
+        
+    }
+    
+    
+    
+    
+    public static void main(String[] args) {
+        double result = power(3,5);
+        System.out.println(result);
+    }
+}
