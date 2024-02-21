@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class BitSetONOff {
+	public static void main(String[] args) {
+
+//---------------HARD-CODE--------------------------------------		
+		int binNum = 0b100101011; // Binary number in java begins with '0b'
+		int K = 6;
+		int bin2 = 1 << (K - 1);
+
+		int result = binNum & bin2;
+
+//		if (result != 0) {
+//			System.out.println("The Kth bit is set.");
+//		} else {
+//			System.out.println("The Kth bit is not set.");
+//		}
+
+//-----------------USER INPUT-------------------------------------------
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter the binary number: ");  // The input would be taken in the string format and then would be turned back into the binary format
+
+    String binInput = sc.nextLine();
+		int binNum2 = Integer.parseInt(binInput, 2);
+		System.out.println("Enter the Kth bit to be checked: ");
+		int K2 = sc.nextInt();
+
+		int mask = 1 << (K - 1);
+
+		int result2 = binNum2 & mask;
+
+		if (result != 0) {
+			System.out.println("The Kth bit is set.");
+		} else {
+			System.out.println("The Kth bit is not set.");
+		}
+
+	}
+}
