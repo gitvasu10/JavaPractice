@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class SmallerNumber {
+
+    public static int smaller(int a, int b){
+        int diff =  a - b;
+        if(diff == 0){
+            System.out.println("The numbers are equal!");
+        }
+        int signBit = (diff >> 31) & 1;
+        return signBit == 0? b : a;
+    }
+
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the first number: ");
+        int a = sc.nextInt();
+        System.out.print("Enter the second number: " );
+        int b = sc.nextInt();
+
+        System.out.println("The smaller number is: "+smaller(a,b));
+
+
+
+
+        }
+
+
+
+
+    }
+
+
+
+
