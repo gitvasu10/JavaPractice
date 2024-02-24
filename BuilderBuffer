@@ -1,0 +1,58 @@
+public class BuilderComaprisons {
+    public static void main(String[] args) throws InterruptedException {
+//        StringBuilder builder = new StringBuilder();
+//        Thread t1 = new Thread(()->{for (int i = 1; i < 1000; i++) {
+//            builder.append("A");
+//        }});
+//
+//
+//        Thread t2 = new Thread(()->{for (int i = 1; i < 1000; i++) {
+//            builder.append("A");
+//        }});
+
+//        t1.start();
+//        t2.start();
+//
+//        //Waiting for both the threads to end execution
+//        try{
+//            t1.join();
+//            t2.join();
+//        }
+//        catch(InterruptedException w){
+//            w.printStackTrace();
+//        }
+//
+//        System.out.println(builder.toString().length());
+
+        StringBuffer buffer = new StringBuffer();
+
+        //Creating the threads and using the lambda functions to instantiate the Runnable interface.
+        //Lambdas are one of the easiest ways to instantiate the Functional interfaces.
+        Thread t1 = new Thread(() -> {
+            for (int i = 1; i <= 100; i++) {
+                buffer.append("Shashwat");
+            }
+        });
+
+
+        Thread t2 = new Thread(() -> {
+            for (int i = 1; i <= 100; i++) {
+                buffer.append("Malasi");
+            }
+        });
+
+
+        //Starting the threads
+        t1.start();
+        t1.join(); // put the main thread in waitin until the t1 completes the entire execution
+
+        t2.start();
+        t2.join();
+
+        System.out.println("The length of the buffer is = " + buffer.toString().length());
+
+
+    }
+
+
+}
