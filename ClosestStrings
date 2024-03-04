@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class ClosestString {
+
+    public static int closest(String test, String word1, String word2) {
+        String[] testArray = test.split(" ");
+
+        int minDistance = 10000000;            // THIS VALUE WILL BE LATER USED IN THE AGGREGATE METHOD
+        int d1 = -1;                           // DISTANCE OF FIRST WORD
+        int d2 = -1;                          // DISTANCE OF SECOND WORD
+
+        for (int i = 0; i < testArray.length; i++) {
+            if (testArray[i].equals(word1)) {
+                d1 = i;
+            }
+            if (testArray[i].equals(word2)) {
+                d2 = i;
+            }
+        }
+        minDistance = Math.min(minDistance, (Math.abs(d1 - d2)));
+
+        return minDistance;
+
+
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the input string: ");
+
+        String test = sc.nextLine();
+
+        System.out.println("Please enter the first word: ");
+        String word1 = sc.next();
+
+        System.out.println("Please enter the second word: ");
+        String word2 = sc.next();
+
+
+        int distance = closest(test, word1, word2);
+        System.out.println("The minimum distance between " + word1 + " and " + word2 + " is = " + distance);
+
+
+    }
+
+
+}
