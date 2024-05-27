@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+import static java.lang.Math.ceil;
+
+public class StackMiddleRemove {
+    //String[] args is for the command line arguments
+    public static void main(String[] args){
+        Stack<Character>testStack = new Stack<Character>();
+        testStack.push('1');
+        testStack.push('2');
+        testStack.push('3');
+        testStack.push('4');
+        testStack.push('5');
+        testStack.push('6');
+        testStack.push('7');
+
+        //Transferring all the stack elements into the list
+        List<Character> test = new ArrayList<>();
+        while(!testStack.empty()) {
+            test.add(testStack.pop());
+        }
+        int size = test.size();
+
+        if(size % 2 == 0){
+            int middle = size/2 ;
+            for(int i =0; i < size; i++){
+                if(i == middle){
+                    continue;
+                }
+                testStack.push(test.get(i));
+            }
+        }
+        if(size % 2 != 0){
+            int middle = (int) ceil(size/2);
+            for(int i =0; i < size; i++){
+                if(i == middle){
+                    continue;
+                }
+                testStack.push(test.get(i));
+            }
+        }
+        System.out.println("The stack after printing is:");
+
+        while(!testStack.empty()){
+            System.out.println(testStack.pop());
+
+        }
+    }
+}
