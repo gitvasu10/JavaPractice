@@ -1,4 +1,5 @@
-
+//This approach is applicable to only the cases where we have consecutive duplicate elements in an array
+//Example: [1,2,2,,3,4,4]
 public class Dups {
 	// Removes duplicates in-place from the array
 	public static int removeDups(int[] arr) {
