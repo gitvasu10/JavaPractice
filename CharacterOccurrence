@@ -1,0 +1,31 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+public class CharOccurrence {
+    public static void charCount(String input){
+        input = input.toLowerCase();
+        char[] inputArray = input.toCharArray();
+        Map<Character,Integer> inputMap = new HashMap<>();
+        for(char ch:inputArray){
+            if(inputMap.containsKey(ch)){
+                inputMap.put(ch, inputMap.get(ch)+1);
+            }
+            else{
+                inputMap.put(ch,1);
+            }
+        }
+    //Returning the values from the Hash Map
+        for(Map.Entry<Character,Integer> mapEntry: inputMap.entrySet()){
+            System.out.println("Keys: "+mapEntry.getKey() + ": "+mapEntry.getValue());
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please input the string to the system: ");
+        String input = sc.nextLine();
+        System.out.println("The count of each character in the string is: " );
+        charCount(input);
+
+
+    }
+}

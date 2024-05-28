@@ -41,6 +41,7 @@ public class BuilderComaprisons {
             }
         });
 
+
         //Starting the threads
         t1.start();
         t1.join(); // put the main thread in waitin until the t1 completes the entire execution
@@ -49,5 +50,5 @@ public class BuilderComaprisons {
         t2.join();
 
         System.out.println("The length of the buffer is = " + buffer.toString().length());
-    }
+
 }

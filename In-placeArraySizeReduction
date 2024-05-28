@@ -1,0 +1,22 @@
+public class SizeReduction {
+    public static void main(String[] args){
+        int[] testArray = {1,2,3,4,5,6};
+
+        int left,right=0;
+        int position = 2;
+
+        int[] newArray = new int[testArray.length-1];
+        int j =0;  //This variable helps in the continue block, when i increases but j does not hence maintaines the contiguous array index in the new array
+        for(int i = 0; i < testArray.length; i++){
+        if(i == position){
+            continue;
+        }
+        newArray[j++] = testArray[i];
+    }
+
+        for(int i: newArray){
+            System.out.println(i);
+        }
+        System.out.println((String.format("The size of the new array is %d",j)));
+    }
+}

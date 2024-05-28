@@ -1,0 +1,50 @@
+public class BalanceBracketsIndex {
+    public static int balancedIndex(String test){
+        int openBracket = 0;
+        int closeBracket = 0;
+
+        //Counting the number of opened and closed brackets...
+        for(int i = 0; i < test.length(); i++){
+            if(test.charAt(i) == '('){
+                openBracket++;
+            }
+            if(test.charAt(i) == ')'){
+                closeBracket++;
+            }
+        }
+
+        //Checking if the brackets are balanced or not
+
+        if(openBracket != closeBracket){
+            return -1;
+        }
+
+        //Finding the balance index from the string
+        int balance = 0;
+        for(int i = 0; i < test.length(); i++){
+
+            if(test.charAt(i) == '('){
+                balance++;
+            }
+            else if(test.charAt(i) == ')'){
+                balance--;
+            }
+
+            if(balance == 0 && openBracket == 1){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args){
+        String brackets = "()()()()()";
+        int balanceIndex = balancedIndex(brackets);
+
+        if(balanceIndex < 0){
+            System.out.println("The input string is unbalanced!");
+        }
+            System.out.println("The balanced index is found at: "+balanceIndex);
+
+    }
+}

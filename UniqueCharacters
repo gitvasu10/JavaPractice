@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class UniqueCharacters {
+    public static void unique(String test) {
+        String test2 = test.toLowerCase();
+        char[] testChar = test2.toCharArray();
+        StringBuilder builder = new StringBuilder();
+
+        for (int i =0; i < test2.length(); i++) {
+            char current = test2.charAt(i);
+            if (test2.indexOf(current) == i) {
+
+                builder.append(current);
+
+            }
+            else{
+                System.out.println("Duplicate of "+test.charAt(i) +" found at index "+i);
+            }
+        }
+        System.out.println("The uniques characters in the string are: " + builder.toString());
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the input string below: ");
+        String test = sc.nextLine();
+        unique(test);
+    }
+
+}
