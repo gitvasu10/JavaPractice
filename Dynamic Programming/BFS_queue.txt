@@ -8,11 +8,12 @@ public class Graphs {
         this.vertices = vertices;
         adjacentList = new LinkedList[vertices];
         for(int i = 0; i < vertices; ++i){
-            adjacentList[i] = new LinkedList<>();
+            adjacentList[i] = new LinkedList<>();    //Every memory block in the array will be having an individual linked list of its own 
+                                                    //to keep store the adjacent vertices of a particular node
         }
     }
 
-    public void addEdge(int u, int v){
+    public void addEdge(int u, int v){     //function to create the graph using the edges
         adjacentList[u].add(v);
     }
 
@@ -26,15 +27,15 @@ public class Graphs {
         queue.add(startVertex);
 
     //Repeating the same process for the entire graph
-        while(!queue.isEmpty()){
+        while(!queue.isEmpty()){                    
             //Printing the value of the first node from the graph
-            int currentNode = queue.poll();
-            System.out.println(currentNode + " ");
+            int currentNode = queue.poll();    //poll() is used to remove the first element from the queue and concurrrently reducing the queue size as well
+            System.out.println(currentNode + " "); //Print the data of the current node
 
             //Adding the adjacent nodes to the visited list
             for(int neighbour : adjacentList[currentNode]){
-                if(!visited[neighbour]){
-                    visited[neighbour] = true;
+                if(!visited[neighbour]){            //If the adjacent node to the current node is not present in the visited list, put it
+                    visited[neighbour] = true;    
                     queue.add(neighbour);
                 }
             }
