@@ -51,8 +51,4 @@ public class BuilderComaprisons {
 
         System.out.println("The length of the buffer is = " + buffer.toString().length());
 
-
-    }
-
-
 }
