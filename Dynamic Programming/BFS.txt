@@ -1,0 +1,70 @@
+import java.util.*;
+
+public class Graphs {
+    static int vertices;
+    static LinkedList<Integer>[] adjacentList;
+
+    public Graphs(int vertices){
+        this.vertices = vertices;
+        adjacentList = new LinkedList[vertices];
+        for(int i = 0; i < vertices; ++i){
+            adjacentList[i] = new LinkedList<>();
+        }
+    }
+
+    public void addEdge(int u, int v){
+        adjacentList[u].add(v);
+    }
+
+    public static void BFS(int startVertex){
+    //We need to create 1 queue for printing and 1 list for visited
+        Queue<Integer> queue = new LinkedList<Integer>();
+        boolean[] visited = new boolean[vertices];
+
+    //Marking the first node as the visited one
+        visited[startVertex] = true;
+        queue.add(startVertex);
+
+    //Repeating the same process for the entire graph
+        while(!queue.isEmpty()){
+            //Printing the value of the first node from the graph
+            int currentNode = queue.poll();
+            System.out.println(currentNode + " ");
+
+            //Adding the adjacent nodes to the visited list
+            for(int neighbour : adjacentList[currentNode]){
+                if(!visited[neighbour]){
+                    visited[neighbour] = true;
+                    queue.add(neighbour);
+                }
+            }
+        }
+    }
+
+
+    public static void main(String[] args){
+        int vertices = 6;
+
+        Graphs graph = new Graphs(vertices);
+
+        graph.addEdge(0,1);
+        graph.addEdge(0,2);
+
+
+        graph.addEdge(1,2);
+        graph.addEdge(1,5);
+
+
+        graph.addEdge(2,3);
+
+        graph.addEdge(3,4);
+        graph.addEdge(3,5);
+
+
+        graph.addEdge(4,5);
+
+      //Function calling
+        BFS(0);
+
+    }
+}
